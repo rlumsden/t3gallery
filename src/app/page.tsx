@@ -1,36 +1,26 @@
-import Link from "next/link";
+import { mock } from "node:test";
+
+const mockUrls = [
+  'https://utfs.io/f/a842593b-041b-488b-9cb2-a922f492dfb1-hda3am.png',
+  'https://utfs.io/f/a973afca-8c7e-4504-8840-5930bbba5c0c-k7bgfj.png',
+  'https://utfs.io/f/3156f91b-73cb-4f45-b47e-c24b7a785833-7khqg.png',
+  'https://utfs.io/f/fd2c511d-89de-4875-bd64-e9c6f7c4bff8-y92i2c.png',
+]
+
+const mockImages = mockUrls.map((url, index) => ({
+  id: index + 1,
+  url,
+}))
 
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-        </h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
-            </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
-          </Link>
-        </div>
+    <main className="">
+      <div className="flex flex-wrap gap-4">
+        {[...mockImages, ...mockImages, ...mockImages].map((image) => (
+          <div key={image.id} className="w-48 border border-gray-200 rounded-lg">
+            <img src={image.url}  />
+          </div>
+        ))}
       </div>
     </main>
   );
