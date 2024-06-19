@@ -1,6 +1,7 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Image from "next/image";
 import { db } from "~/server/db";
+import "@uploadthing/react/styles.css";
 
 export const dynamic = "force-dynamic";
 
@@ -10,9 +11,9 @@ async function Images() {
   });
   return (
     <div className="container flex flex-wrap items-center justify-center gap-3 ">
-      {[...images, ...images, ...images].map((image, index) => (
+      {images.map((image) => (
         <div
-          key={`${image.id} ${index}`}
+          key={`${image.id}`}
           className="w-48 rounded-lg border border-gray-200 p-1"
         >
           <Image
@@ -34,7 +35,7 @@ export default async function HomePage() {
       <SignedOut>
         <p>Please sign in to view this page</p>
       </SignedOut>
-      <SignedIn>
+      <SignedIn>        
         <Images />
       </SignedIn>
     </main>
